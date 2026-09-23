@@ -41,29 +41,29 @@ const rnd = mulberry32(42);
 export const companies: Company[] = [
   {
     id: 'c-soker-1',
-    name: 'Telenor Nett AS',
+    name: 'Fiberlink Norge AS',
     kinds: ['soker'],
     orgNr: '981 234 567',
     contactName: 'Kari Iversen',
-    contactEmail: 'kari.iversen@telenornett.example',
+    contactEmail: 'kari.iversen@fiberlinknorge.example',
     contactPhone: '922 11 001',
   },
   {
     id: 'c-soker-2',
-    name: 'Altibox Fiber AS',
+    name: 'Kystfiber AS',
     kinds: ['soker'],
     orgNr: '981 234 987',
     contactName: 'Ole Brekke',
-    contactEmail: 'ole.brekke@altiboxfiber.example',
+    contactEmail: 'ole.brekke@kystfiber.example',
     contactPhone: '922 11 002',
   },
   {
     id: 'c-soker-3',
-    name: 'Canal Digital Kabel AS',
+    name: 'Bredbåndspartner AS',
     kinds: ['soker'],
     orgNr: '981 235 112',
     contactName: 'Mona Fjeld',
-    contactEmail: 'mona.fjeld@canaldigitalkabel.example',
+    contactEmail: 'mona.fjeld@bredbandspartner.example',
     contactPhone: '922 11 003',
   },
   {
@@ -105,10 +105,10 @@ export const companies: Company[] = [
 ];
 
 export const persons: Person[] = [
-  { id: 'p-soker-1a', name: 'Kari Iversen', email: 'kari.iversen@telenornett.example', companyIds: ['c-soker-1'], title: 'Utbyggingskoordinator' },
-  { id: 'p-soker-1b', name: 'Anders Moe', email: 'anders.moe@telenornett.example', companyIds: ['c-soker-1'], title: 'Feltingeniør' },
-  { id: 'p-soker-2a', name: 'Ole Brekke', email: 'ole.brekke@altiboxfiber.example', companyIds: ['c-soker-2'], title: 'Prosjektleder utbygging' },
-  { id: 'p-soker-3a', name: 'Mona Fjeld', email: 'mona.fjeld@canaldigitalkabel.example', companyIds: ['c-soker-3'], title: 'Nettplanlegger' },
+  { id: 'p-soker-1a', name: 'Kari Iversen', email: 'kari.iversen@fiberlinknorge.example', companyIds: ['c-soker-1'], title: 'Utbyggingskoordinator' },
+  { id: 'p-soker-1b', name: 'Anders Moe', email: 'anders.moe@fiberlinknorge.example', companyIds: ['c-soker-1'], title: 'Feltingeniør' },
+  { id: 'p-soker-2a', name: 'Ole Brekke', email: 'ole.brekke@kystfiber.example', companyIds: ['c-soker-2'], title: 'Prosjektleder utbygging' },
+  { id: 'p-soker-3a', name: 'Mona Fjeld', email: 'mona.fjeld@bredbandspartner.example', companyIds: ['c-soker-3'], title: 'Nettplanlegger' },
   { id: 'p-eier-1a', name: 'Per Solheim', email: 'per.solheim@nettpartner.example', companyIds: ['c-eier-1'], title: 'Saksbehandler stolpeoppheng' },
   { id: 'p-eier-1b', name: 'Liv Dahl', email: 'liv.dahl@nettpartner.example', companyIds: ['c-eier-1'], title: 'Nettingeniør' },
   { id: 'p-eier-2a', name: 'Grete Lund', email: 'grete.lund@fjellkraftnett.example', companyIds: ['c-eier-2'], title: 'Saksbehandler nett' },
@@ -400,7 +400,7 @@ function msg(soknadId: string, authorPersonId: string, authorCompanyId: string, 
 }
 
 // ===========================================================================
-// SØKNAD A: stolpe 1–5 hos Nettpartner AS (Telenor Nett AS søker)
+// SØKNAD A: stolpe 1–5 hos Nettpartner AS (Fiberlink Norge AS søker)
 // Scenario: innsendt, priset, søker avslår én kostbar stolpe (stolpebytte),
 // resten akseptert og under utførelse. Berørte strekk krever ny trasévurdering.
 // ===========================================================================
@@ -620,7 +620,7 @@ notify(soknadA.id, 'tiltak_tildelt', 'Dere har fått tildelt 3 tiltak på søkna
 notify(soknadA.id, 'tiltak_meldt_ferdig', 'Tiltak på stolpe 2 er meldt ferdig og venter på kontroll.', 'c-eier-1', { poleId: poleId(2), read: false, createdAt: '2026-08-24T15:00:00.000Z' });
 
 // ===========================================================================
-// SØKNAD B: stolpe 6–10 hos Nettpartner AS (Telenor Nett AS søker)
+// SØKNAD B: stolpe 6–10 hos Nettpartner AS (Fiberlink Norge AS søker)
 // Scenario: full flyt til godkjenning – entreprenør melder ferdig, saksbehandler
 // godkjenner, søker ser stolpen som klar.
 // ===========================================================================
@@ -743,7 +743,7 @@ notify(soknadB.id, 'tiltak_meldt_ferdig', 'Tiltak på stolpe 8 er meldt ferdig o
 notify(soknadB.id, 'stolpe_godkjent', 'Stolpe 8 er godkjent for omsøkt oppheng.', 'c-soker-1', { poleId: poleId(8), read: false, createdAt: '2026-08-21T08:05:00.000Z' });
 
 // ===========================================================================
-// SØKNAD C: stolpe 26–30 hos Fjellkraft Nett AS (samme søker: Telenor Nett AS)
+// SØKNAD C: stolpe 26–30 hos Fjellkraft Nett AS (samme søker: Fiberlink Norge AS)
 // Viser at én søker har søknader hos begge stolpeeierne, og at samme
 // entreprenør (Linjebygg) jobber for begge stolpeeiere.
 // ===========================================================================
@@ -857,7 +857,7 @@ notify(soknadC.id, 'soker_svarte', 'Søker har akseptert tiltak på stolpe 29.',
 notify(soknadC.id, 'tiltak_tildelt', 'Dere har fått tildelt 1 tiltak på søknad KO-2026-0003.', 'c-utf-1', { poleId: poleId(29), read: false, createdAt: '2026-09-07T10:00:00.000Z' });
 
 // ===========================================================================
-// SØKNAD D: stolpe 31–33 hos Fjellkraft Nett AS – Altibox Fiber som søker,
+// SØKNAD D: stolpe 31–33 hos Fjellkraft Nett AS – Kystfiber som søker,
 // fortsatt i utkast (viser at flere uavhengige søknader/søkere kan eksistere
 // samtidig, og at en søknad kan lagres som utkast før innsending).
 // ===========================================================================
